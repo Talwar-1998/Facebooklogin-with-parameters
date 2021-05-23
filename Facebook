@@ -1,0 +1,44 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Facebooklogin {
+	public static WebDriver driver;
+	public static void main(String[] args) throws InterruptedException {
+		 driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		String username ="htygethjnkm";
+		String password = "sdtfygjkhl";
+		facebook_login(username,password);
+		
+		driver.close();
+
+	}
+	public static void facebook_login(String username,String password) {
+		driver.get("https://www.facebook.com/");
+		driver.findElement(By.id("email")).sendKeys(username);
+		driver.findElement(By.name("pass")).sendKeys(password);
+		driver.findElement(By.name("login")).click();
+		String title = driver.getTitle();
+		System.out.println(title);
+
+		if(title.equals("facebook - Login")) {
+			System.out.println("Pass:Home page is dispalyed");
+		}
+		else
+		{
+			System.out.println("Fail:Home page is not displayed");
+		}
+		
+		String url = driver.getCurrentUrl();
+		System.out.println(url);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}
